@@ -1,0 +1,19 @@
+.card-img-top {
+  height: 240px;
+  object-fit: cover;
+}
+
+.card{
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+a{
+  color: var(--white);
+  text-decoration: none;
+}

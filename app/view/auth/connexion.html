@@ -1,0 +1,47 @@
+{% extends 'common/base.html' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block title %}Se connecter{% endblock %}
+
+
+{% block body %}
+
+<div class="glassbackground m-auto p-4">
+    <h1 class="mb-3 text-center">Connexion</h1>
+
+    {% if erreurs|length > 0 %}
+    <ul class="bg-secondary rounded list-group list-group-flush">
+        {% for error in erreurs %}
+            <li class="text-danger list-group-item">- {{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="d-flex justify-content-cente mt-4">
+        <form method="post" class="w-100">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                <p class="label">Pseudo :</p>
+                {{ form.login(class="form-control", autocomplete="off") }}
+            </div>
+            <div class="mb-3">
+                <p class="label">Mot de passe :</p>
+                {{ form.password(class="form-control", autocomplete="new-password") }}
+            </div>
+            <div>
+                {{ form.submit(class="form-control btn btn-outline-dark") }}
+            </div>
+        </form>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <p class="text-center">Vous n'avez pas de compte ? <a href="{{ url_for('auth.inscription') }}">Inscrivez-vous</a></p>
+    </div>
+    
+</div>
+
+
+{% endblock %}

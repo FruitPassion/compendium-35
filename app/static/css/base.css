@@ -1,0 +1,256 @@
+:root {
+  --primary: #990011;
+  --secondary: #b62020;
+  --tertiary: #f7dad5;
+  --quaternary: #118ab2;
+  --quinary: #073b4c;
+  --white: #f8f8f2;
+  --black: #282a36;
+  --gray: #44475a;
+  --transparent-gray: rgba(132, 132, 132, 0.47);
+  --red: #ff5555;
+  --light-red: #f88484;
+  --green: #50fa7b;
+  --blue: #8be9fd;
+  --yellow: #f1fa8c;
+  --purple: #ff79c6;
+  --cyan: #8be9fd;
+  --orange: #ffb86c;
+  --pink: #ff79c6;
+  --transparent: transparent;
+}
+
+/* import font froom static fonts */
+@font-face {
+  font-family: "Pterra Regular";
+  src: url("../fonts/Pterra\ Regular/Pterra\ Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* import font froom static fonts */
+@font-face {
+  font-family: "Celestia Antiqua Std Regular";
+  src: url("../fonts/Celestia\ Antiqua\ Std\ Regular/Celestia\ Antiqua\ Std\ Regular.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--secondary);
+  font-family: "Pterra Regular", sans-serif;
+}
+
+h1, .a-h1 {
+  font-size: 40px;
+}
+
+h2, .a-h2 {
+  font-size: 27.2px;
+}
+
+h2::before {
+  content: "→";
+  margin-right: 8px;
+}
+
+h3, .a-h3 {
+  font-size: 25px;
+}
+
+h4, .a-h4 {
+  font-size: 24px;
+  color : var(--red);
+}
+
+h5, .a-h5 {
+  font-weight: bold;
+  color: var(--light-red);
+}
+
+body,
+html {
+  height: 100%;
+}
+
+
+p,
+a,
+li,
+span,
+label,
+input,
+select,
+option,
+textarea,
+table,
+button {
+  color: var(--white);
+  font-family: "Celestia Antiqua Std Regular", sans-serif;
+  font-size: 19px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: var(--tertiary);
+  text-decoration: underline dotted;
+}
+
+.btn {
+  font-family: "Pterra Regular", sans-serif;
+}
+
+.glassbackground {
+  background: rgba(66, 65, 65, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(7.6px);
+  -webkit-backdrop-filter: blur(7.6px);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  width: 75%;
+}
+
+#bg-content {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+
+#main-div {
+  position: absolute;
+  top: 5%;
+  z-index: 2;
+  width: 100%;
+}
+
+#banniere {
+  color: black;
+  font-size: 20px;
+  z-index: 5;
+  width: 100%;
+  bottom: 0;
+  padding-left: 20px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  border-radius: 10px;
+  margin: 20px 0;
+  table-layout: auto;
+}
+
+th, td {
+  padding: 5px 10px;
+}
+
+th {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+td{
+  border: 0.4px solid var(--gray);
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+
+thead {
+  color: var(--white);
+  font-weight: bold;
+  text-align: center;
+}
+
+thead th {
+  padding: 10px 0;
+}
+
+tbody tr:nth-child(odd) td{
+  background-color: var(--transparent-gray);
+}
+
+.blocs{
+  border: 1px solid var(--transparent-gray);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.illustration-container{
+  position: relative;
+  height: 400px;
+  margin-bottom: 50px;
+  margin-bottom: -120px;
+}
+
+.illustration{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: translateY(-40px);
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+.text-container{
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+
+  #bg-content {
+    left: 50%;
+    margin-left: -512px;
+  }
+}
+
+@media screen and (max-width:840px) {
+
+  table {
+    table-layout: fixed;
+  }
+
+  .glassbackground {
+    width: 95%;
+  }
+
+}

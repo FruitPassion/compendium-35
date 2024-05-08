@@ -1,0 +1,52 @@
+{% extends 'common/base.html' %}
+
+{% block stylesheets %}
+  <style>
+    ul {
+      list-style: inside;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ url_for('static', filename = 'js/tableau.js') }}"></script>
+{% endblock %}
+
+{% block title %}Dons {% endblock %}
+
+{% block body %}
+  <div class="glassbackground m-auto overflow-hidden">
+    <div class="illustration-container">
+      <img src="{{ url_for('static', filename = 'images/cards/don.png') }}" alt="Compétences" class="illustration" />
+    </div>
+
+    <div class='text-container p-4'>
+        <h1 class="mb-3 text-center">Dons {{ categorie.libelle }}</h1>
+      
+        <p>{{ categorie.description }}</p>
+        <p>{{ categorie.regles|safe }}</p>
+      
+        <h2 class="mt-4">Liste des dons</h2>
+
+        <table>
+            <caption>Liste des dons</caption>
+            <thead>
+                <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for don in dons %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('dons.don', nom_don=don.nom) }}">{{ don.nom }}</a>
+                    </td>
+                    <td>{{ don.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+{% endblock %}

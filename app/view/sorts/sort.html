@@ -1,0 +1,92 @@
+{% extends 'common/base.html' %}
+
+{% block stylesheets %}
+  <style>
+    ul {
+      list-style: inside;
+    }
+  </style>
+{% endblock %}
+
+
+{% block title %}Sort{% endblock %}
+
+{% block body %}
+  <div class="glassbackground m-auto overflow-hidden">
+    <div class="illustration-container">
+      <img src="{{ url_for('static', filename = 'images/sorts/art'+range(1, 7)|random|string+'.jpg') }}" alt="Sorts" class="illustration" />
+    </div>
+
+    <div class='text-container p-4'>
+            <h1 class="mb-3 text-center">
+                {{ sort.Sort.nom }} - {{ sort.Sort.ecole }}
+                {% if sort.Sort.branche is not none %}
+                    ({{ sort.Sort.branche }})
+                {% endif %}
+                {% if sort.Sort.registre is not none %}
+                    [{{ sort.Sort.registre }}]
+                {% endif %}
+            </h1>
+            
+            {% if sort.Sort.temps_incantation is not none %}
+            <p><em>Temps d'incantation : </em>{{ sort.Sort.temps_incantation }}</p>
+            {% endif %}
+
+            {% if sort.Sort.composante is not none %}
+            <p><em>Composante(s) : </em>{{ sort.Sort.composante }}</p>
+            {% endif %}
+
+            {% if sort.Sort.portee is  not none %}
+            <p><em>Portee : </em>{{ sort.Sort.portee }}</p>
+            {% endif %}
+
+            {% if sort.Sort.effet is not none %}
+            <p><em>Effet : </em>{{ sort.Sort.effet }}</p>
+            {% endif %}
+
+            {% if sort.Sort.cible is  not none %}
+            <p><em>Cible : </em>{{ sort.Sort.cible }}</p>
+            {% endif %}
+
+            {% if sort.Sort.duree is not none %}
+            <p><em>Durée : </em>{{ sort.Sort.duree }}</p>
+            {% endif %}
+
+            {% if sort.Sort.sauvegarde is not none %}
+            <p><em>Sauvegarde : </em>{{ sort.Sort.sauvegarde }}</p>
+            {% endif %}
+
+            {% if sort.Sort.res_magie is  not none %}
+            <p><em>Resistance à la magie : </em>{{ sort.Sort.res_magie }}</p>
+            {% endif %}
+            
+            {% if sort.Sort.zone_effet is  not none %}
+            <p><em>Zone d'effet : </em>{{ sort.Sort.zone_effet }}</p>
+            {% endif %}
+
+            {% if sort.Sort.cout_xp is  not none %}
+            <p><em>Couts en XP : </em>{{ sort.Sort.cout_xp }}</p>
+            {% endif %}
+
+            {% if sort.Sort.focaliseur_div is not none %}
+              {{ sort.Sort.focaliseur_div|safe }}
+            {% endif %}
+
+            {% if sort.Sort.composante_div is  not none %}
+            {{ sort.Sort.composante_div|safe }}
+            {% endif %}
+
+            {% if sort.Sort.divers is  not none %}
+            {{ sort.Sort.divers|safe }}
+            {% endif %}
+
+            <p>{{ sort.Sort.description|safe }}</p>
+
+            <h2>Source :</h2>
+            <p><a href="{{ url_for('sources.source', nom=sort.Source.id_sort) }}">
+                {{ sort.Source.nom }}
+        </a></p>
+
+    </div>
+  </div>
+{% endblock %}

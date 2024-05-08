@@ -1,0 +1,72 @@
+{% extends 'common/base.html' %}
+
+{% block stylesheets %}
+  <style>
+    ul {
+      list-style: inside;
+    }
+  </style>
+{% endblock %}
+
+{% block title %}Compétences{% endblock %}
+
+{% block body %}
+  <div class="glassbackground m-auto overflow-hidden">
+    <div class="illustration-container">
+      <img src="{{ url_for('static', filename = 'images/competence/art'+range(1, 7)|random|string+'.jpg') }}" alt="Compétences" class="illustration" />
+    </div>
+
+    <div class='text-container p-4'>
+    <h1 class="mb-3 text-center">
+        {{ competence.Competence.libelle_competence }} ({{ competence.Caracteristique.nom }})
+    </h1>
+
+    <ul>
+    <li>Nécessite une formation : {% if competence.Competence.innee %}Non{% else %}Oui{% endif %}</li>
+    <li>Malus d'armure : {% if competence.Competence.malus_armure %}Oui{% else %}Non{% endif %}</li>
+    </ul>
+
+    <div>
+      {{ competence.Competence.description_longue|safe }}
+    </div>
+    
+
+    {% if synergies|length > 0 %}
+    <h2 class="mt-4">Synergies (à partir de {{ competence.Competence.libelle_competence }})</h2>
+    <ul>
+        {% for synergy in synergies %}
+            <li>Un degres de maitrise de 5 ou plus en {{ synergy.libelle_competence }} apporte un bonus de +2 en {{ synergy.libelle_competence_1 }} {{ synergy.special if synergy.special }}.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if synergies_inverse|length > 0 %}
+    <h2 class="mt-4">Synergies inverses (donnants un bonus à {{ competence.Competence.libelle_competence }})</h2>
+    <ul>
+        {% for synergy in synergies_inverse %}
+            <li>Un degres de maitrise de 5 ou plus en {{ synergy.libelle_competence }} apporte un bonus de +2 en {{ synergy.libelle_competence_1 }} {{ synergy.special if synergy.special }}.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if dons_augmentes|length > 0 %}
+    <h2 class="mt-4">Dons améliorant {{ competence.Competence.libelle_competence }}</h2>
+    <ul>
+        {% for don in dons_augmentes %}
+            <li>Le don <a href="{{ url_for('dons.don', nom_don=don.nom) }}">{{ don.nom }}</a> permet d'augmenter la competence {{ don.libelle_competence }} de +{{ don.valeur }}.</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if dons_requis|length > 0 %}
+    <h2 class="mt-4">Dons necessitant un préqrequis de maitrise en {{ competence.Competence.libelle_competence }}.</h2>
+    <ul>
+        {% for don in dons_requis %}
+            <li>Degré de maîtrise de {{ don.degre_maitrise }} : <a href="{{ url_for('dons.don', nom_don=don.nom) }}">{{ don.nom }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

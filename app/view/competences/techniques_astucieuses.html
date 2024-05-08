@@ -1,0 +1,97 @@
+{% extends 'common/base.html' %}
+
+{% block stylesheets %}
+  <style>
+    ul {
+      list-style: inside;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ url_for('static', filename = 'js/blocs_text.js') }}"></script>
+{% endblock %}
+
+{% block title %}Techniques Astucieuses{% endblock %}
+
+{% block body %}
+  <div class="glassbackground m-auto overflow-hidden">
+    <div class="illustration-container">
+      <img src="{{ url_for('static', filename = 'images/cards/techniques_astucieuses.jpg') }}" alt="Compétences" class="illustration" />
+    </div>
+
+    <div class='text-container p-4'>
+    <h1 class="mb-3 text-center">Techniques Astucieuses</h1>
+    <p>
+        Les techniques astucieuses sont une méthode de donner à un personnage des techniques souvent hautes en couleur, comme sauter par-dessus un gouffre à l'aide d'un fouet, courir sur un mur ou encore sauter à cheval tout en frappant son ennemi.
+        Apprendre une technique astucieuse comptant des points de compétence, ce sont généralement les personnages en ayant le plus qui en apprennent le plus.
+        Les 4 types de techniques astucieuses sont Interaction, Manipulation, Mental et Mouvement. Chacun de ses types se focalisent sur certaines compétences, et seront donc apprécier par divers types de personnage. 
+    </p>
+
+    <h2>Apprendre une technique astucieuse</h2>
+
+    <p>Apprendre une technique astucieuse coûte 2 points de compétence. A tout moment où le personnage acquiert des points de compétence, il peut en dépenser pour apprendre une nouvelle technique astucieuse.
+        Un personnage peut apprendre toute technique astucieuse dont il possède les prérequis. Si à un moment donné, un personnage ne possède plus les prérequis nécessaires à une technique, il ne peut plus l'utiliser jusqu'à ce qu'il les vérifie à nouveau.
+        On ne peut apprendre plus d'une technique astucieuse à un niveau et un personnage ne peut avoir un nombre total de techniques astucieuses qui excède la moitié de son niveau global (arrondi au supérieur). Certains dons t classes de prestige permettent d'en posséder plus.<br>
+        Un personnage ne peut apprendre une technique astucieuse qu'une seule fois. Soit il la possède, soit il ne la possède pas. </p>
+
+    <h2>Utiliser une technique astucieuse</h2>
+
+    <p>Les techniques astucieuses sont des manœuvres spéciales, et donc ne peuvent pas être utilisés aussi souvent que désirés. A moins qu'il en soit noté autrement, une technique astucieuse ne peut être utilisé qu'une fois par rencontre (ou une fois par minute dans les cas où la notion de rencontre n'entre pas en jeu).<br>
+    Typiquement, une technique astucieuse est partie d'une autre action ou une action en elle-même. Chaque technique astucieuse précise quel type d'action est utilisé, s'il y en a, dans sa description.<br>
+    Une technique astucieuse nécessite généralement un test de compétences, ou est un ajout à un test de compétences réussit. Les exceptions à cette règle sont notées dans la description de la technique astucieuse en question.<br>
+    A moins que l'inverse ne soit précisé, une technique astucieuse ne provoque pas d'attaque d'opportunité, à moins que l'action pendant la quelle se déroule la technique astucieuse provoque de base des attaques d'opportunité.</p>
+
+    <h2>Liste des techniques astucieuses</h2>
+
+    <p>{{ techniques|length }} techniques astucieuses répertoriées.</p>
+
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" id="searchBar" placeholder="Rechercher une technique astucieuse" aria-label="Rechercher une technique astucieuse" aria-describedby="button-addon2" oninput="searchBlocs()">
+      </div>
+
+      <div id="techniques-liste">
+        {% for technique in techniques %}
+            <div class="blocs">
+            <h4>{{ technique.TechniqueAstucieuse.nom }} [{{ technique.TechniqueAstucieuse.type }}]</h4>
+
+            <p>{{ technique.TechniqueAstucieuse.description }}</p>
+            
+            <div class="verif-condition">
+              <h5>Conditions : </h5>
+              <ul>
+              {% for condition in condtions %}
+                {% if technique.TechniqueAstucieuse.id_technique_astucieuse == condition.Dependre.id_technique_astucieuse %}
+                    <li>Degré de maîtrise de {{ condition.Dependre.valeur }} en {{ condition.Competence.libelle_competence }}</li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+            </div>
+            
+            <h5>Avantage :</h5>
+            <p>{{ technique.TechniqueAstucieuse.avantage  }}</p>
+
+            <h5>Source :</h5>
+            <p><a href="{{ url_for('sources.source', nom=technique.Source.id_source) }}">
+                {{ technique.Source.nom }}
+            </a></p>
+            </div>
+        {% endfor %}
+      </div>
+
+      <div id="searchRes" style="display: none;">
+        <p class="text-center">Aucun résultat</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let verifCondition = document.querySelectorAll('.verif-condition');
+      verifCondition.forEach(function(condition) {
+        if (condition.querySelector('ul').querySelectorAll('li').length === 0) {
+          condition.remove();
+        }
+      });
+    });
+  </script>
+{% endblock %}
