@@ -1,24 +1,23 @@
-$(document).ready(function(){
-    $('.clickable-tr').click(function(){
+$(document).ready(function() {
+    $('.clickable-tr').click(function() {
         window.location = $(this).attr('href');
         return false;
     });
 });
 
 function hoverRow(row) {
-    row.style.backgroundColor='var(--tertiary)';
-    row.style.color='var(--black)'; 
-    row.style.cursor='pointer'
+    row.style.backgroundColor = 'var(--tertiary)';
+    row.style.color = 'var(--black)';
+    row.style.cursor = 'pointer'
 }
 
 function unhoverRow(row) {
-    row.style.backgroundColor='';
-    row.style.color='var(--white)';
-    row.style.cursor='default';
+    row.style.backgroundColor = '';
+    row.style.color = 'var(--white)';
+    row.style.cursor = 'default';
 }
 
-function searchTable(tabname, searchname)
-{
+function searchTable(tabname, searchname) {
     let noresultname = tabname + 'Res';
     let input, filter, table, tr, td, i, txtValue;
     input = document.getElementById(searchname);
@@ -35,7 +34,7 @@ function searchTable(tabname, searchname)
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     display = "";
                     nbr++;
-                } 
+                }
             }
         }
         tr[i].style.display = display;

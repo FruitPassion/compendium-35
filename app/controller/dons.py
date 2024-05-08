@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template
-
-from model.don import Don
 from model.categorie_don import CategorieDon
+from model.don import Don
 from utils.builder import builder_condition_don
 
 dons = Blueprint("dons", __name__, url_prefix="/dons")
@@ -25,4 +24,3 @@ def categorie(nom_categorie):
     categorie = CategorieDon.get_by_nom(nom_categorie)
     dons = Don.get_by_categories(categorie.id_categorie_don)
     return render_template("dons/categorie.html", categorie=categorie, dons=dons)
-

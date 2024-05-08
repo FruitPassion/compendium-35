@@ -1,67 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-
-    <title>{% block title %}Accueil{% endblock %} - Compendium 3.5</title>
-
-    <link{% block favicon %}
-        rel="icon" href="{{ url_for('static',filename='images/skull-icone.png') }}"
-    {% endblock %} />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
-    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
-
-    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/base.css') }}"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    {% block stylesheets %}{% endblock %} {% block javascripts %}{% endblock %}
-    {% block headSuppl %}{% endblock %}
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <title>
+            {% block title %}Accueil{% endblock %}
+        - Compendium 3.5</title>
+        <meta name="description" content="Dnd 3.5 compendium">
+        <meta name="keywords" content="dnd 3.5 ttrpg">
+        <link {% block favicon %}
+              rel="icon"
+              href="{{ url_for('static',filename='images/skull-icone.png') }}"
+              {% endblock %} />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+              integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <link rel="stylesheet"
+              type="text/css"
+              href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+        <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+        <link rel="stylesheet"
+              type="text/css"
+              href="{{ url_for('static',filename='css/base.css') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        {% block headSuppl %}{% endblock %}
+        <style>
       #bg-content  {
         background-image: url("{{ url_for('static', filename='images/background/bg-'+range(1, 7)|random|string+'.jpg') }}");
       }
-    </style>
-  </head>
-
-  <body>
-
-    {% include "common/nav_base.html" %} 
-
-    <div id="bg-content"></div>
-
-      <div class="d-flex justify-content-center center-div pt-4" id="main-div">
-          <div class="d-block w-100">
-            <div style="height: 40px;"></div>
-              {% block body %}{% endblock %}
-              <div style="height: 40px;"></div>
-          </div>
-      </div>
-    
-        
-      {% with messages = get_flashed_messages(with_categories=true) %} 
-        {% if messages %}
-            {% for category, message in messages %}
-            <div id="banniere" class="fixed-bottom" style="
-                    {% if category == 'message' %}
-                      background-color: rgb(54, 149, 54);
-                    {% else %}
-                        background-color: #e83c55;
-                    {% endif %} >
-            <ul class="flashes" style="margin-top: revert">
-                <li>{{ message }}</li>
-            </ul>
+        </style>
+    </head>
+    <body>
+        {% include "common/nav_base.html" %}
+        <div id="bg-content"></div>
+        <div class="d-flex justify-content-center center-div pt-4" id="main-div">
+            <div class="d-block w-100">
+                <div class="h-40"></div>
+                {% block body %}{% endblock %}
+                <div class="h-40"></div>
             </div>
-            {% endfor %} 
-        {% endif %} 
-    {% endwith %}
-
-    {% include "partials/footer.html" %}
-  </body>
-  {% block javascripts2 %}{% endblock %}
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div id="banniere"
+                         class="fixed-bottom {% if category == 'message' %} bg-success {% else %} bg-danger {% endif %}">
+                        <ul class="flashes mt-revert">
+                            <li>{{ message }}</li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% include "partials/footer.html" %}
+    </body>
+    {% block javascripts2 %}{% endblock %}
 </html>

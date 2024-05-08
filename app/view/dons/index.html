@@ -1,53 +1,55 @@
 {% extends 'common/base.html' %}
-
 {% block stylesheets %}
-  <style>
+    <style>
     ul {
       list-style: inside;
     }
-  </style>
+    </style>
 {% endblock %}
-
-{% block javascripts %}
-  <script src="{{ url_for('static', filename = 'js/blocs_text.js') }}"></script>
-{% endblock %}
-
+{% block javascripts %}<script src="{{ url_for('static', filename = 'js/blocs_text.js') }}"></script>{% endblock %}
 {% block title %}Dons{% endblock %}
-
 {% block body %}
-  <div class="glassbackground m-auto overflow-hidden">
-    <div class="illustration-container">
-      <img src="{{ url_for('static', filename = 'images/cards/dons.jpg') }}" alt="Compétences" class="illustration" />
-    </div>
-
-    <div class='text-container p-4'>
-      <h1 class="mb-3 text-center">Dons</h1>
-
-      <p>Un don est une capacité spéciale qui donne de nouvelles capacité à un personnage ou améliore ses capacités. Certains dons demandent des conditions qui doivent toutes être accomplies avant de prendre le don.
-        Voici la liste des catégories associés aux dons</p>
-
-        <h2>Liste des catégories de dons</h2>
-
-        <p>{{ categories|length }} catégories de dons répertoriées.</p>
-    
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="searchBar" placeholder="Rechercher une catégorie" aria-label="Rechercher une catégorie" aria-describedby="button-addon2" oninput="searchBlocs()">
+    <div class="glassbackground m-auto overflow-hidden">
+        <div class="illustration-container">
+            <img height="20"
+                 width="20"
+                 src="{{ url_for('static', filename = 'images/cards/dons.jpg') }}"
+                 alt="Compétences"
+                 class="illustration" />
         </div>
-    
-        <div id="techniques-liste">
-        {% for categorie in categories %}
-            <div class="blocs">
-            <h4><a class="a-h4" href="{{ url_for('dons.categorie', nom_categorie=categorie.libelle) }}">
-              {{ categorie.libelle }}
-          </a></h4>
-    
-            <p>{{ categorie.description|safe }}</p>
+        <div class="text-container p-4">
+            <h1 class="mb-3 text-center">Dons</h1>
+            <p>
+                Un don est une capacité spéciale qui donne de nouvelles capacité à un personnage ou améliore ses capacités. Certains dons demandent des conditions qui doivent toutes être accomplies avant de prendre le don.
+                Voici la liste des catégories associés aux dons
+            </p>
+            <h2>Liste des catégories de dons</h2>
+            <p>{{ categories|length }} catégories de dons répertoriées.</p>
+            <div class="input-group mb-3">
+                <input type="text"
+                       class="form-control"
+                       id="searchBar"
+                       placeholder="Rechercher une catégorie"
+                       aria-label="Rechercher une catégorie"
+                       aria-describedby="button-addon2"
+                       oninput="searchBlocs()">
             </div>
-        {% endfor %}
-        </div>
-        <div id="searchRes" style="display: none;">
-          <p class="text-center">Aucun résultat</p>
+            <div id="techniques-liste">
+                {% for categorie in categories %}
+                    <div class="blocs">
+                        <h4>
+                            <a class="a-h4"
+                               href="{{ url_for('dons.categorie', nom_categorie=categorie.libelle) }}">
+                                {{ categorie.libelle }}
+                            </a>
+                        </h4>
+                        <p>{{ categorie.description|safe }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="searchRes none-display">
+                <p class="text-center">Aucun résultat</p>
+            </div>
         </div>
     </div>
-  </div>
 {% endblock %}

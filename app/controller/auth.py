@@ -1,9 +1,8 @@
-from flask import Blueprint, flash, redirect, render_template, request, session, url_for
-from utils.custom_form import LoginForm, RegisterForm
-
+from flask import Blueprint, flash, redirect, render_template, session, url_for
 from model.compte import Compte
 from model.possederole import PossederRole
 from model.role import Role
+from utils.custom_form import LoginForm, RegisterForm
 
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
@@ -12,14 +11,16 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 def connexion():
     form = LoginForm()
     erreurs = []
-    
+
     if form.validate_on_submit():
         if Compte.verifier_compte(form.login.data):
             if Compte.verifier_mdp(form.login.data, form.password.data):
                 compte = Compte.get_compte_par_pseudo(form.login.data)
                 session["nom_compte"] = compte.pseudo
                 session["id_compte"] = compte.id_compte
-                session["roles"] = [role.libelle for role in Role.get_role_of_compte(compte.id_compte)]
+                session["roles"] = [
+                    role.libelle for role in Role.get_role_of_compte(compte.id_compte)
+                ]
                 flash("Vous êtes connecté en tant que {}".format(form.login.data))
                 return redirect(url_for("site.accueil"))
             else:
@@ -33,7 +34,7 @@ def connexion():
 def inscription():
     form = RegisterForm()
     erreurs = []
-    
+
     if form.validate_on_submit():
         if Compte.verifier_compte(form.login.data):
             erreurs.append("Ce pseudo est déjà pris")
@@ -53,4 +54,3 @@ def deconnexion():
     session.pop("nom_compte", None)
     flash("Vous êtes déconnecté")
     return redirect(url_for("site.accueil"))
-

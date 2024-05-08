@@ -1,0 +1,19 @@
+ul {
+    list-style: inside;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 0px;
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 0;
+}
+
+tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}

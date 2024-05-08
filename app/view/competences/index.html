@@ -1,281 +1,310 @@
 {% extends 'common/base.html' %}
-
 {% block stylesheets %}
-  <style>
+    <style>
     ul {
       list-style: inside;
     }
-  </style>
+    </style>
 {% endblock %}
-
-{% block javascripts %}
-  <script src="{{ url_for('static', filename = 'js/tableau.js') }}"></script>
-{% endblock %}
-
+{% block javascripts %}<script src="{{ url_for('static', filename = 'js/tableau.js') }}"></script>{% endblock %}
 {% block title %}Compétences{% endblock %}
-
 {% block body %}
-  <div class="glassbackground m-auto overflow-hidden">
-    <div class="illustration-container">
-      <img src="{{ url_for('static', filename = 'images/cards/compétences.jpg') }}" alt="Compétences" class="illustration" />
+    <div class="glassbackground m-auto overflow-hidden">
+        <div class="illustration-container">
+            <img height="20"
+                 width="20"
+                 src="{{ url_for('static', filename = 'images/cards/compétences.jpg') }}"
+                 alt="Compétences"
+                 class="illustration" />
+        </div>
+        <div class="text-container p-4">
+            <h1 class="mb-3 text-center">Compétences</h1>
+            <p>
+                Quand on acquiert une compétence dite “ de classe ”, chaque point de compétence dépensé augmente d'un le degré de maîtrise du personnage (soit un bonus de +1 lors des tests de cette compétence). Si l’on choisit une compétence dite “ hors classe ”, 1 point de compétence n’augmente le degré de maîtrise que de un demi.
+                <br />
+                Le degré de maîtrise maximal qu’un personnage peut atteindre dans une compétence de classe est égal à son niveau global + 3 et à la moitié de ce résultat pour les compétences hors classe (n’arrondissez pas en cas de fraction).
+            </p>
+            <h5>Utilisation des compétences :</h5>
+            <p>
+                Voici la formule pour jouer un test de compétence : 1d20 + modificateur de compétence (modificateur de compétence = degré de maîtrise + modificateur de caractéristique + modificateurs divers). Ce test s’effectue de la même façon qu’un jet d’attaque ou de sauvegarde. Plus le total obtenu est élevé, plus le résultat est favorable au personnage. Il faut soit atteindre un degré de difficulté (DD), soit battre le résultat du test de compétence de l’adversaire. Degré de maîtrise. Le degré de maîtrise dépend du nombre de points investis dans une compétence. Beaucoup de compétences peuvent être utilisées sans qu’on y ait investi le moindre point ; on parle alors de test inné de compétence.
+            </p>
+            <h5>Modificateur de caractéristique :</h5>
+            <p>
+                Les tests de compétence utilisent le modificateur de la caractéristique associée à cette compétence. Cette information est donnée dans la description de chaque compétence.
+            </p>
+            <h5>Modificateurs divers :</h5>
+            <p>
+                Les modificateurs divers comprennent, entre autres, les bonus raciaux, le malus d’armure aux tests et les bonus accordés par les dons.
+            </p>
+            <p>
+                Un point de compétence correspond à une augmentation du degré de maîtrise de 1 pour une compétence de classe et de 1/2 pour une compétence hors classe. La liste des compétences associées à chaque classe se trouve dans leur description. Les compétences qui n’apparaissent pas sur cette liste sont “ hors classe ”. Une augmentation du degré de maîtrise de 1/2 n’améliore pas le test de compétence, mais deux demis donnent un nouveau point de degré de maîtrise. Veillez bien à dépenser la totalité de vos points de compétence ; il est impossible d’en garder pour plus tard.
+                <br />
+                Le degré de maîtrise maximal que votre personnage ne peut pas dépasser est égal à son niveau global + 3 pour les compétences de classe, et la moitié - sans arrondir - de ce total pour les autres. Si une compétence est une compétence de classe pour au moins une des classes du personnage, alors son degré de maîtrise maximal est égal à son niveau global + 3.
+            </p>
+            <h2>Utilisation des compétences</h2>
+            <p>
+                Chaque utilisation de compétence est évaluée grâce à un jet de dé. Plus le résultat du test de compétence est élevé, plus l’issue est favorable au personnage. Il est nécessaire d’atteindre un résultat donné, variant en fonction des conditions (soit un DD, soit le test opposé d’un adversaire), pour que la compétence soit utilisée avec brio. Plus la tâche est difficile, plus le chiffre à obtenir est élevé. Le résultat du test peut être modifié par certaines conditions. Si le personnage est au calme, loin de toute source de déconcentration, il peut faire attention et éviter ainsi les erreurs du débutant. De même, s’il a du temps, il peut réessayer encore et encore jusqu’à qu’il réussisse du mieux possible. Enfin, l’aide de ses compagnons lui permettra parfois d’accomplir des prouesses qu’il n’aurait pu réaliser seul.
+            </p>
+            <h2>Le test de compétence</h2>
+            <p>
+                Le test de compétence prend en compte la formation du personnage (le degré de maîtrise), mais aussi son talent inné (le modificateur de caractéristique) et le hasard (le jet de dé). Il peut également intégrer des facteurs tels que la facilité de certaines races à accomplir certaines tâches (bonus racial), la difficulté supplémentaire due au port d’une armure (malus d'armure aux tests) ou les dons que possède le personnage et d’autres facteurs encore. Pour effectuer un test de compétence, jetez 1d20 et ajoutez le modificateur de compétence du personnage. Ce modificateur comprend son degré de maîtrise, son modificateur de caractéristique et tout autre modificateur pouvant s’appliquer à la compétence concernée (bonus racial, malus d'armure aux tests, etc.). Plus le total est élevé, plus l’issue est favorable. Contrairement aux jets d’attaque et de sauvegarde, un 20 naturel au dé ne constitue pas un succès automatique, pas plus qu’un 1 naturel n’est un échec automatiquement.
+            </p>
+            <h2>Degré de difficulté</h2>
+            <p>
+                Certains tests de compétence s’effectuent en fonction d’un degré de difficulté, ou DD. Le DD est une valeur déterminée en accord avec les règles des compétences représentant la difficulté de la tâche que le personnage s’est fixée.
+            </p>
+            <table>
+                <caption>Tableau 4-1 : Degré de difficulté</caption>
+                <thead>
+                    <tr>
+                        <th>Difficulté (DD)</th>
+                        <th>Exemple (compétence utilisée)</th>
+                    </tr>
+                </thead>
+                <tbdody>
+                <tr>
+                    <td>Très facile (0)</td>
+                    <td>Remarquer un grand objet posé en évidence (Détection)</td>
+                </tr>
+                <tr>
+                    <td>Facile (5)</td>
+                    <td>Escalader une corde à nœuds (Escalade)</td>
+                </tr>
+                <tr>
+                    <td>Moyenne (10)</td>
+                    <td>Entendre l’approche d’un garde (Perception auditive)</td>
+                </tr>
+                <tr>
+                    <td>Délicat (15)</td>
+                    <td>Saboter une roue de chariot pour qu’elle tombe en route (Désamorçage/sabotage)</td>
+                </tr>
+                <tr>
+                    <td>Difficile (20)</td>
+                    <td>Nager en pleine tempête (Natation)</td>
+                </tr>
+                <tr>
+                    <td>Formidable (25)</td>
+                    <td>Ouvrir une serrure de qualité moyenne (Crochetage)</td>
+                </tr>
+                <tr>
+                    <td>Héroïque (30)</td>
+                    <td>Sauter par-dessus une faille de 9 mètres de large (Saut)</td>
+                </tr>
+                <tr>
+                    <td>Presque impossible (40)</td>
+                    <td>Suivre la piste d’un groupe d’orques sur un terrain dur et après 24 heures de pluie (Survie)</td>
+                </tr>
+                </tbdody>
+            </table>
+            <h2>Test opposé</h2>
+            <p>
+                La réussite ou l’échec d’un test opposé est déterminé en comparant le résultat du test du personnage au résultat du test de son adversaire. Le vainqueur est celui des deux qui obtient le résultat le plus élevé, l’autre est le perdant. En cas d’égalité de résultat, la victoire revient à celui des deux dont le modificateur de compétence est le plus élevé. Si les modificateurs sont identiques, il faut relancer les dés tant qu’il y a égalité.
+            </p>
+            <table>
+                <caption>Tableau 4-2 : Test opposé</caption>
+                <thead>
+                    <tr>
+                        <th>Tâche</th>
+                        <th>Compétence (caractéristique)</th>
+                        <th>Compétence opposée (caractéristique)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rouler quelqu’un</td>
+                        <td>Bluff (Cha)</td>
+                        <td>Psychologie (Sag)</td>
+                    </tr>
+                    <tr>
+                        <td>Tracer une fausse carte</td>
+                        <td>Contrefaçon (Int)</td>
+                        <td>Contrefaçon (Int)</td>
+                    </tr>
+                    <tr>
+                        <td>Se faire passer pour quelqu’un d’autre</td>
+                        <td>Déguisement (Cha)</td>
+                        <td>Détection (Sag)</td>
+                    </tr>
+                    <tr>
+                        <td>Arriver furtivement dans le dos de quelqu’un</td>
+                        <td>Déplacement silencieux (Dex)</td>
+                        <td>Perception auditive (Sag)</td>
+                    </tr>
+                    <tr>
+                        <td>Ne pas se faire remarquer</td>
+                        <td>Discrétion (Dex)</td>
+                        <td>Détection (Sag)</td>
+                    </tr>
+                    <tr>
+                        <td>Ligoter un prisonnier</td>
+                        <td>Maîtrise des cordes (Dex)</td>
+                        <td>Évasion (Dex)</td>
+                    </tr>
+                    <tr>
+                        <td>Dérober une bourse</td>
+                        <td>Escamotage (Dex)</td>
+                        <td>Détection (Sag)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Nouvelles tentatives</h2>
+            <p>
+                En règle générale, en cas d’échec, rien n’empêche d’utiliser encore et encore une compétence. Mais, pour certaines compétences, l’échec s’accompagne parfois de conséquences fâcheuses. Un petit nombre d’entre elles sont ainsi totalement inutiles une fois que l’on a raté sa première tentative. Pour la plupart des compétences, il est inutile de réussir plusieurs tests ; le premier succès suffit.
+            </p>
+            <h2>Test inné de compétence</h2>
+            <p>
+                En règle générale, on peut effectuer un test de compétence même quand on essaye d’utiliser une compétence pour laquelle on n’a pas reçu la moindre formation. Dans ce cas, le résultat du test ne bénéficie pas du degré de maîtrise, mais les autres modificateurs éventuels (racial, de caractéristique, etc.) sont toujours pris en compte. Nombre de compétences ne peuvent être utilisées que par les individus ayant reçu la formation adéquate.
+            </p>
+            <h2>Conditions favorables ou défavorables</h2>
+            <p>
+                Certaines conditions facilitent ou gênent l’utilisation d’une compétence, ce qui se traduit par un bonus ou un malus associé au test de compétence (ou éventuellement par une modification du DD de ce dernier).
+                <br>
+                On peut modifier le test de compétence de quatre façons :
+            </p>
+            <ul>
+                <li>
+                    En accordant un bonus de circonstances de +2 pour représenter des conditions améliorant les chances de réussite, comme par exemple le fait de posséder l’outil idéal pour accomplir la tâche choisie, d’être aidé par un compagnon (voir Combiner ses compétences) ou de détenir des informations particulièrement complètes sur le sujet.
+                </li>
+                <li>
+                    En imposant un malus de circonstances de –2 reflétant des difficultés exceptionnelles, comme le fait de devoir utiliser un outil inadéquat ou de disposer de renseignements erronés.
+                </li>
+                <li>
+                    En réduisant le DD de 2 points pour simuler les conditions qui rendent la tâche plus facile, comme le fait d’avoir un public déjà acquis à sa cause ou de réaliser un travail qui n’a pas besoin d’être parfait.
+                </li>
+                <li>
+                    En augmentant le DD de 2 points dans le cas où la tâche est plus complexe qu’à l’habitude, comme le fait de se retrouver face à un public hostile ou de devoir fournir un travail impeccable.
+                </li>
+            </ul>
+            <p>
+                Les conditions qui affectent la manière dont le personnage utilise sa compétence se retrouvent au niveau du modificateur, contrairement à celles qui modifient le résultat que le personnage doit obtenir, et qui, elles, influent sur le DD. Certes, un bonus au test de compétence entraîne le même résultat qu’une diminution égale du DD, mais tous deux représentent des cas de figure différents, et il arrive que cette distinction soit importante.
+            </p>
+            <h2>Temps d’utilisation des compétences</h2>
+            <p>
+                Certaines compétences s’utilisent rapidement, tandis que d’autres exigent plusieurs rounds, voire encore plus. La plupart prennent une action simple, une action de mouvement ou une action complexe. Les différents types d’actions indiquent le temps qu’elles prennent dans un round de combat (6 secondes) et le déplacement qu’elles autorisent (voir Les différents types d’actions). Certains tests de compétence s’effectuent instantanément et sont considérés comme une simple réaction ; ils ne comptent pas comme des actions à part entière. D’autres représentent une partie du déplacement du personnage (c’est par exemple le cas de Saut). La description de chaque compétence indique le temps nécessaire pour y faire appel.
+            </p>
+            <h2>Test sans jet de dé</h2>
+            <p>
+                Un test de compétence représente la tentative faite pour atteindre un but, le plus souvent dans des conditions de tension ou de déconcentration importantes. Mais il arrive que le personnage puisse faire disparaître le facteur aléatoire, pour peu qu’il dispose de suffisamment de temps et de calme.
+            </p>
+            <h5>Faire 10 :</h5>
+            <p>
+                Lorsqu’un aventurier n’est ni menacé ni distrait, il peut choisir de “ faire 10 ”. Dans ce cas, pas besoin de jeter le d20 ; on considère que le résultat est automatiquement égal à 10, ce qui revient à un succès automatique pour les tâches aisées. Il est impossible de “ faire 10 ” quand on est déconcentré ou menacé (par exemple, lors d’un combat). Dans la plupart des cas, faire 10 est une façon de jouer la sécurité. Le joueur sait (ou estime) qu’un résultat moyen permettra de réussir, mais a peur des conséquences d’un résultat trop bas et il préfère donc se rabattre sur la moyenne en faisant 10. Cette option est particulièrement utile lorsqu’un résultat élevé n’apporte aucun avantage particulier (comme pour escalader une corde à nœuds ou pour effectuer des soins à long terme).
+            </p>
+            <h5>Faire 20 :</h5>
+            <p>
+                Si le personnage a suffisamment de temps devant lui (le plus souvent, 2 minutes pour toute compétence s’utilisant généralement en 1 round, une action complexe ou une action simple), s’il n’est ni menacé ni distrait et si la compétence qu’il désire utiliser n’implique aucune conséquence néfaste en cas d’échec, il peut choisir de “ faire 20 ”. Autrement dit, à force de réessayer, il va finir par obtenir un 20 sur le dé. Au lieu de lancer le dé, calculez le résultat de l’action comme si le jet de dé avait donné 20. Faire 20 signifie que le personnage réessaye jusqu’à réussir du mieux possible, mais cela implique beaucoup d’échecs entre temps. Cette possibilité prend en moyenne vingt fois plus de temps qu’un test de compétence normal. Puisque faire 20 suppose que le personnage va rater de nombreuses fois avant de réussir, son utilisation avec une compétence présentant une conséquence néfaste en cas d’échec (comme un test de Désamorçage/sabotage effectué pour désamorcer un piège) déclencherait systématiquement ces conséquences avant qu’il ait une chance de réussir (dans ce cas, cela déclencherait le piège). Les compétences avec lesquelles on utilise régulièrement “ faire 20 ” sont Crochetage, Évasion et Fouille.
+            </p>
+            <h5>Test de caractéristique et test de niveau de lanceur de sorts :</h5>
+            <p>
+                Les règles permettant de faire 10 et de faire 20 s’appliquent aux tests de caractéristique. Par contre, aucune des deux règles ne s’applique aux tests de niveau de lanceur de sorts (auxquels on a recours, par exemple, pour lancer dissipation de la magie).
+            </p>
+            <h2>Combiner ses compétences</h2>
+            <p>Plusieurs personnages peuvent combiner leurs efforts lorsqu’ils utilisent la même compétence en même temps.</p>
+            <h2>Actions individuelles simultanées</h2>
+            <p>
+                Il arrive souvent que plusieurs aventuriers essayent d’accomplir la même action de manière indépendante, auquel cas le succès ou l’échec de chacun n’influe pas sur la tentative des autres.
+            </p>
+            <h2>Aider quelqu’un</h2>
+            <p>
+                Un personnage peut aider l’un de ses compagnons dans sa tâche en effectuant le même genre de test de compétence pour combiner leurs efforts. Si le résultat du test est de 10 ou plus, l’aide apportée se traduit par un bonus de +2 sur le test du compagnon, ce qui correspond à une condition favorable. (Il est impossible de faire 10 sur un test destiné à aider quelqu’un.) Il arrive souvent que l’aide des autres ne soit d’aucun secours ou que le nombre de personnes pouvant coopérer pour accomplir une action donnée soit limité. Dans les cas où il faut remplir des conditions supplémentaires pour réaliser une action particulière, on ne peut aider quelqu’un que si on remplit soi-même ces conditions.
+            </p>
+            <h2>Synergies entre compétences</h2>
+            <p>
+                Il arrive parfois que le fait de maîtriser deux compétences proches (comme Acrobatie et Saut) aide à accomplir des tâches en rapport avec chacune d’elles. En règle générale, le fait d’avoir atteint un degré de maîtrise de 5 dans une compétence confère un bonus de +2 aux tests de compétences liées (voir la description de chaque compétence). Dans certains cas, ce bonus ne s’applique pas systématiquement, mais seulement pour quelques tâches. Dans d’autres cas, la synergie ne s’applique pas à un test de compétence, mais à un autre type de test, comme ceux liés à une aptitude de classe.
+            </p>
+            <div class="input-group mb-3">
+                <input type="text"
+                       class="form-control"
+                       id="synSeach"
+                       placeholder="Rechercher une synergie"
+                       aria-label="Rechercher une compétence"
+                       aria-describedby="button-addon2"
+                       onkeyup="searchTable('tabsyn', 'synSeach')">
+            </div>
+            <table id="tabsyn">
+                <caption>Tableau : Synergies entre compétences</caption>
+                <thead>
+                    <tr>
+                        <th>Un degré de maîtrise de 5 ou plus en ...</th>
+                        <th>Confère un bonus de +2 aux tests de ...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for synergy in synergie %}
+                        <tr class="row-to-search">
+                            <td>{{ synergy.libelle_competence }}</td>
+                            <td>{{ synergy.libelle_competence_1 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="tabsynRes none-display">
+                <p class="text-center">Aucun résultat</p>
+            </div>
+            <h2>Tests de caractéristique</h2>
+            <p>
+                Il arrive qu’un personnage tente d’accomplir une action ne correspondant à aucune compétence. On a alors recours à un test de caractéristique, simulé par 1d20 + modificateur de la caractéristique appropriée (cela revient en quelque sorte à jouer un test inné de compétence).
+            </br>
+            Parfois, le résultat d’une action repose uniquement sur l’une des caractéristiques du personnage, sans que le hasard intervienne. De même que deux individus ne vont pas effectuer de test de taille pour savoir qui est le plus grand, ils ne jouent pas de test de Force pour savoir qui est le plus musclé.
+        </p>
+        <h2>Les compétences</h2>
+        <div class="input-group mb-3">
+            <input type="text"
+                   class="form-control"
+                   id="compSeach"
+                   placeholder="Rechercher une compétence ou un element du tableau"
+                   aria-label="Rechercher une compétence"
+                   aria-describedby="button-addon2"
+                   onkeyup="searchTable('tabcomp', 'compSeach')">
+        </div>
+        <table id="tabcomp">
+            <caption>Tableau : Les compétences</caption>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Caractéristique associées</th>
+                    <th>Formation requise</th>
+                    <th>Malus d'armure</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for competence in competences %}
+                    <tr onmouseover="hoverRow(this)"
+                        onmouseout="unhoverRow(this)"
+                        class="clickable-tr row-to-search"
+                        href="{{ url_for('competences.competence', nom = competence.Competence.libelle_competence) }}">
+                        <td>{{ competence.Competence.libelle_competence }}</td>
+                        <td>{{ competence.Caracteristique.nom }}</td>
+                        <td class="text-center fs-4">
+                            {% if not competence.Competence.innee %}
+                                <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>
+                        <td class="text-center fs-4">
+                            {% if competence.Competence.malus_armure %}
+                                <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>
+                        <td>{{ competence.Competence.description_courte }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div id="tabcompRes none-display">
+            <p class="text-center">Aucun résultat</p>
+        </div>
+        <h2>Techniques astucieuses (regles optionelle)</h2>
+        <p>
+            Les techniques astucieuses sont une méthode de donner à un personnage des techniques souvent hautes en couleur, comme sauter par-dessus un gouffre à l'aide d'un fouet, courir sur un mur ou encore sauter à cheval tout en frappant son ennemi. Apprendre une technique astucieuse comptant des points de compétence, ce sont généralement les personnages en ayant le plus qui en apprennent le plus. Les 4 types de techniques astucieuses sont Interaction, Manipulation, Mental et Mouvement. Chacun de ses types se focalisent sur certaines compétences, et seront donc apprécier par divers types de personnage.
+        </p>
+        <p>
+            - En voir plus sur les <a href="{{ url_for("competences.techniques_astucieuses") }}">techniques astucieuses</a>
+        </p>
     </div>
-
-    <div class='text-container p-4'>
-    <h1 class="mb-3 text-center">Compétences</h1>
-    <p>
-      Quand on acquiert une compétence dite “ de classe ”, chaque point de compétence dépensé augmente d'un le degré de maîtrise du personnage (soit un bonus de +1 lors des tests de cette compétence). Si l’on choisit une compétence dite “ hors classe ”, 1 point de compétence n’augmente le degré de maîtrise que de un demi.<br />Le degré de maîtrise maximal qu’un personnage peut atteindre dans une compétence de classe est égal à son niveau global + 3 et à la moitié de ce résultat pour les compétences hors classe (n’arrondissez pas en cas de fraction).
-    </p>
-    <h5>Utilisation des compétences :</h5>
-    <p>Voici la formule pour jouer un test de compétence : 1d20 + modificateur de compétence (modificateur de compétence = degré de maîtrise + modificateur de caractéristique + modificateurs divers). Ce test s’effectue de la même façon qu’un jet d’attaque ou de sauvegarde. Plus le total obtenu est élevé, plus le résultat est favorable au personnage. Il faut soit atteindre un degré de difficulté (DD), soit battre le résultat du test de compétence de l’adversaire. Degré de maîtrise. Le degré de maîtrise dépend du nombre de points investis dans une compétence. Beaucoup de compétences peuvent être utilisées sans qu’on y ait investi le moindre point ; on parle alors de test inné de compétence.</p>
-    <h5>Modificateur de caractéristique :</h5>
-    <p>Les tests de compétence utilisent le modificateur de la caractéristique associée à cette compétence. Cette information est donnée dans la description de chaque compétence.</p>
-    <h5>Modificateurs divers :</h5>
-    <p>Les modificateurs divers comprennent, entre autres, les bonus raciaux, le malus d’armure aux tests et les bonus accordés par les dons.</p>
-
-    <p>
-      Un point de compétence correspond à une augmentation du degré de maîtrise de 1 pour une compétence de classe et de 1/2 pour une compétence hors classe. La liste des compétences associées à chaque classe se trouve dans leur description. Les compétences qui n’apparaissent pas sur cette liste sont “ hors classe ”. Une augmentation du degré de maîtrise de 1/2 n’améliore pas le test de compétence, mais deux demis donnent un nouveau point de degré de maîtrise. Veillez bien à dépenser la totalité de vos points de compétence ; il est impossible d’en garder pour plus tard. <br />Le degré de maîtrise maximal que votre personnage ne peut pas dépasser est égal à son niveau global + 3 pour les compétences de classe, et la moitié - sans arrondir - de ce total pour les autres. Si une compétence est une compétence de classe pour au moins une des classes du personnage, alors son degré de maîtrise maximal est égal à son niveau global + 3.
-    </p>
-
-    <h2>Utilisation des compétences</h2>
-
-    <p>Chaque utilisation de compétence est évaluée grâce à un jet de dé. Plus le résultat du test de compétence est élevé, plus l’issue est favorable au personnage. Il est nécessaire d’atteindre un résultat donné, variant en fonction des conditions (soit un DD, soit le test opposé d’un adversaire), pour que la compétence soit utilisée avec brio. Plus la tâche est difficile, plus le chiffre à obtenir est élevé. Le résultat du test peut être modifié par certaines conditions. Si le personnage est au calme, loin de toute source de déconcentration, il peut faire attention et éviter ainsi les erreurs du débutant. De même, s’il a du temps, il peut réessayer encore et encore jusqu’à qu’il réussisse du mieux possible. Enfin, l’aide de ses compagnons lui permettra parfois d’accomplir des prouesses qu’il n’aurait pu réaliser seul.</p>
-
-    <h2>Le test de compétence</h2>
-
-    <p>Le test de compétence prend en compte la formation du personnage (le degré de maîtrise), mais aussi son talent inné (le modificateur de caractéristique) et le hasard (le jet de dé). Il peut également intégrer des facteurs tels que la facilité de certaines races à accomplir certaines tâches (bonus racial), la difficulté supplémentaire due au port d’une armure (malus d'armure aux tests) ou les dons que possède le personnage et d’autres facteurs encore. Pour effectuer un test de compétence, jetez 1d20 et ajoutez le modificateur de compétence du personnage. Ce modificateur comprend son degré de maîtrise, son modificateur de caractéristique et tout autre modificateur pouvant s’appliquer à la compétence concernée (bonus racial, malus d'armure aux tests, etc.). Plus le total est élevé, plus l’issue est favorable. Contrairement aux jets d’attaque et de sauvegarde, un 20 naturel au dé ne constitue pas un succès automatique, pas plus qu’un 1 naturel n’est un échec automatiquement.</p>
-
-    <h2>Degré de difficulté</h2>
-
-    <p>Certains tests de compétence s’effectuent en fonction d’un degré de difficulté, ou DD. Le DD est une valeur déterminée en accord avec les règles des compétences représentant la difficulté de la tâche que le personnage s’est fixée.</p>
-
-    <table>
-      <caption>Tableau 4-1 : Degré de difficulté</caption>
-      <thead>
-        <tr>
-          <th>Difficulté (DD)</th>
-          <th>Exemple (compétence utilisée)</th>
-        </tr>
-      </thead>
-      <tbdody>
-        <tr>
-          <td>Très facile (0)</td>
-          <td>Remarquer un grand objet posé en évidence (Détection)</td>
-        </tr>
-        <tr>
-          <td>Facile (5)</td>
-          <td>Escalader une corde à nœuds (Escalade)</td>
-        </tr>
-        <tr>
-          <td>Moyenne (10)</td>
-          <td>Entendre l’approche d’un garde (Perception auditive)</td>
-        </tr>
-        <tr>
-          <td>Délicat (15)</td>
-          <td>Saboter une roue de chariot pour qu’elle tombe en route (Désamorçage/sabotage)</td>
-        </tr>
-        <tr>
-          <td>Difficile (20)</td>
-          <td>Nager en pleine tempête (Natation)</td>
-        </tr>
-        <tr>
-          <td>Formidable (25)</td>
-          <td>Ouvrir une serrure de qualité moyenne (Crochetage)</td>
-        </tr>
-        <tr>
-          <td>Héroïque (30)</td>
-          <td>Sauter par-dessus une faille de 9 mètres de large (Saut)</td>
-        </tr>
-        <tr>
-          <td>Presque impossible (40)</td>
-          <td>Suivre la piste d’un groupe d’orques sur un terrain dur et après 24 heures de pluie (Survie)</td>
-        </tr>
-      </tbdody>
-    </table>
-
-    <h2>Test opposé</h2>
-
-    <p>La réussite ou l’échec d’un test opposé est déterminé en comparant le résultat du test du personnage au résultat du test de son adversaire. Le vainqueur est celui des deux qui obtient le résultat le plus élevé, l’autre est le perdant. En cas d’égalité de résultat, la victoire revient à celui des deux dont le modificateur de compétence est le plus élevé. Si les modificateurs sont identiques, il faut relancer les dés tant qu’il y a égalité.</p>
-
-    <table>
-      <caption>Tableau 4-2 : Test opposé</caption>
-      <thead>
-        <tr>
-          <th>Tâche</th>
-          <th>Compétence (caractéristique)</th>
-          <th>Compétence opposée (caractéristique)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Rouler quelqu’un</td>
-          <td>Bluff (Cha)</td>
-          <td>Psychologie (Sag)</td>
-        </tr>
-        <tr>
-          <td>Tracer une fausse carte</td>
-          <td>Contrefaçon (Int)</td>
-          <td>Contrefaçon (Int)</td>
-        </tr>
-        <tr>
-          <td>Se faire passer pour quelqu’un d’autre</td>
-          <td>Déguisement (Cha)</td>
-          <td>Détection (Sag)</td>
-        </tr>
-        <tr>
-          <td>Arriver furtivement dans le dos de quelqu’un</td>
-          <td>Déplacement silencieux (Dex)</td>
-          <td>Perception auditive (Sag)</td>
-        </tr>
-        <tr>
-          <td>Ne pas se faire remarquer</td>
-          <td>Discrétion (Dex)</td>
-          <td>Détection (Sag)</td>
-        </tr>
-        <tr>
-          <td>Ligoter un prisonnier</td>
-          <td>Maîtrise des cordes (Dex)</td>
-          <td>Évasion (Dex)</td>
-        </tr>
-        <tr>
-          <td>Dérober une bourse</td>
-          <td>Escamotage (Dex)</td>
-          <td>Détection (Sag)</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>Nouvelles tentatives</h2>
-            
-    <p>En règle générale, en cas d’échec, rien n’empêche d’utiliser encore et encore une compétence. Mais, pour certaines compétences, l’échec s’accompagne parfois de conséquences fâcheuses. Un petit nombre d’entre elles sont ainsi totalement inutiles une fois que l’on a raté sa première tentative. Pour la plupart des compétences, il est inutile de réussir plusieurs tests ; le premier succès suffit.</p>
-    
-    <h2>Test inné de compétence</h2>
-
-    <p>En règle générale, on peut effectuer un test de compétence même quand on essaye d’utiliser une compétence pour laquelle on n’a pas reçu la moindre formation. Dans ce cas, le résultat du test ne bénéficie pas du degré de maîtrise, mais les autres modificateurs éventuels (racial, de caractéristique, etc.) sont toujours pris en compte. Nombre de compétences ne peuvent être utilisées que par les individus ayant reçu la formation adéquate.</p>
-    
-    <h2>Conditions favorables ou défavorables</h2>
-
-    <p>Certaines conditions facilitent ou gênent l’utilisation d’une compétence, ce qui se traduit par un bonus ou un malus associé au test de compétence (ou éventuellement par une modification du DD de ce dernier). <br>On peut modifier le test de compétence de quatre façons :</p>
-    <ul>
-      <li>En accordant un bonus de circonstances de +2 pour représenter des conditions améliorant les chances de réussite, comme par exemple le fait de posséder l’outil idéal pour accomplir la tâche choisie, d’être aidé par un compagnon (voir Combiner ses compétences) ou de détenir des informations particulièrement complètes sur le sujet.</li>
-      <li>En imposant un malus de circonstances de –2 reflétant des difficultés exceptionnelles, comme le fait de devoir utiliser un outil inadéquat ou de disposer de renseignements erronés.</li>
-      <li>En réduisant le DD de 2 points pour simuler les conditions qui rendent la tâche plus facile, comme le fait d’avoir un public déjà acquis à sa cause ou de réaliser un travail qui n’a pas besoin d’être parfait.</li>
-      <li>En augmentant le DD de 2 points dans le cas où la tâche est plus complexe qu’à l’habitude, comme le fait de se retrouver face à un public hostile ou de devoir fournir un travail impeccable.</li>
-    </ul>
-    <p>Les conditions qui affectent la manière dont le personnage utilise sa compétence se retrouvent au niveau du modificateur, contrairement à celles qui modifient le résultat que le personnage doit obtenir, et qui, elles, influent sur le DD. Certes, un bonus au test de compétence entraîne le même résultat qu’une diminution égale du DD, mais tous deux représentent des cas de figure différents, et il arrive que cette distinction soit importante.</p>
-
-    <h2>Temps d’utilisation des compétences</h2>
-
-    <p>Certaines compétences s’utilisent rapidement, tandis que d’autres exigent plusieurs rounds, voire encore plus. La plupart prennent une action simple, une action de mouvement ou une action complexe. Les différents types d’actions indiquent le temps qu’elles prennent dans un round de combat (6 secondes) et le déplacement qu’elles autorisent (voir Les différents types d’actions). Certains tests de compétence s’effectuent instantanément et sont considérés comme une simple réaction ; ils ne comptent pas comme des actions à part entière. D’autres représentent une partie du déplacement du personnage (c’est par exemple le cas de Saut). La description de chaque compétence indique le temps nécessaire pour y faire appel.</p>
-    
-    <h2>Test sans jet de dé</h2>
-
-    <p>Un test de compétence représente la tentative faite pour atteindre un but, le plus souvent dans des conditions de tension ou de déconcentration importantes. Mais il arrive que le personnage puisse faire disparaître le facteur aléatoire, pour peu qu’il dispose de suffisamment de temps et de calme.</p>
-    
-    <h5>Faire 10 :</h5>
-    <p>Lorsqu’un aventurier n’est ni menacé ni distrait, il peut choisir de “ faire 10 ”. Dans ce cas, pas besoin de jeter le d20 ; on considère que le résultat est automatiquement égal à 10, ce qui revient à un succès automatique pour les tâches aisées. Il est impossible de “ faire 10 ” quand on est déconcentré ou menacé (par exemple, lors d’un combat). Dans la plupart des cas, faire 10 est une façon de jouer la sécurité. Le joueur sait (ou estime) qu’un résultat moyen permettra de réussir, mais a peur des conséquences d’un résultat trop bas et il préfère donc se rabattre sur la moyenne en faisant 10. Cette option est particulièrement utile lorsqu’un résultat élevé n’apporte aucun avantage particulier (comme pour escalader une corde à nœuds ou pour effectuer des soins à long terme).</p>
-    <h5>Faire 20 :</h5>
-    <p>Si le personnage a suffisamment de temps devant lui (le plus souvent, 2 minutes pour toute compétence s’utilisant généralement en 1 round, une action complexe ou une action simple), s’il n’est ni menacé ni distrait et si la compétence qu’il désire utiliser n’implique aucune conséquence néfaste en cas d’échec, il peut choisir de “ faire 20 ”. Autrement dit, à force de réessayer, il va finir par obtenir un 20 sur le dé. Au lieu de lancer le dé, calculez le résultat de l’action comme si le jet de dé avait donné 20. Faire 20 signifie que le personnage réessaye jusqu’à réussir du mieux possible, mais cela implique beaucoup d’échecs entre temps. Cette possibilité prend en moyenne vingt fois plus de temps qu’un test de compétence normal. Puisque faire 20 suppose que le personnage va rater de nombreuses fois avant de réussir, son utilisation avec une compétence présentant une conséquence néfaste en cas d’échec (comme un test de Désamorçage/sabotage effectué pour désamorcer un piège) déclencherait systématiquement ces conséquences avant qu’il ait une chance de réussir (dans ce cas, cela déclencherait le piège). Les compétences avec lesquelles on utilise régulièrement “ faire 20 ” sont Crochetage, Évasion et Fouille.</p>
-    <h5>Test de caractéristique et test de niveau de lanceur de sorts :</h5>
-    <p>Les règles permettant de faire 10 et de faire 20 s’appliquent aux tests de caractéristique. Par contre, aucune des deux règles ne s’applique aux tests de niveau de lanceur de sorts (auxquels on a recours, par exemple, pour lancer dissipation de la magie).</p>
-
-    <h2>Combiner ses compétences</h2>
-
-    <p>Plusieurs personnages peuvent combiner leurs efforts lorsqu’ils utilisent la même compétence en même temps.</p>
-
-    <h2>Actions individuelles simultanées</h2>
-
-    <p>Il arrive souvent que plusieurs aventuriers essayent d’accomplir la même action de manière indépendante, auquel cas le succès ou l’échec de chacun n’influe pas sur la tentative des autres.</p>
-    
-    <h2>Aider quelqu’un</h2>
-
-    <p>Un personnage peut aider l’un de ses compagnons dans sa tâche en effectuant le même genre de test de compétence pour combiner leurs efforts. Si le résultat du test est de 10 ou plus, l’aide apportée se traduit par un bonus de +2 sur le test du compagnon, ce qui correspond à une condition favorable. (Il est impossible de faire 10 sur un test destiné à aider quelqu’un.) Il arrive souvent que l’aide des autres ne soit d’aucun secours ou que le nombre de personnes pouvant coopérer pour accomplir une action donnée soit limité. Dans les cas où il faut remplir des conditions supplémentaires pour réaliser une action particulière, on ne peut aider quelqu’un que si on remplit soi-même ces conditions. </p>
-
-    <h2>Synergies entre compétences</h2>
-
-    <p> Il arrive parfois que le fait de maîtriser deux compétences proches (comme Acrobatie et Saut) aide à accomplir des tâches en rapport avec chacune d’elles. En règle générale, le fait d’avoir atteint un degré de maîtrise de 5 dans une compétence confère un bonus de +2 aux tests de compétences liées (voir la description de chaque compétence). Dans certains cas, ce bonus ne s’applique pas systématiquement, mais seulement pour quelques tâches. Dans d’autres cas, la synergie ne s’applique pas à un test de compétence, mais à un autre type de test, comme ceux liés à une aptitude de classe.</p>
-
-     
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" id="synSeach" placeholder="Rechercher une synergie" aria-label="Rechercher une compétence" aria-describedby="button-addon2" onkeyup="searchTable('tabsyn', 'synSeach')">
-    </div>
-
-    <table id='tabsyn'>
-      <caption>Tableau : Synergies entre compétences</caption>
-      <thead>
-        <tr>
-          <th>Un degré de maîtrise de 5 ou plus en ...</th>
-          <th>Confère un bonus de +2 aux tests de ...</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for synergy in synergie %}
-          <tr class="row-to-search">
-            <td>{{ synergy.libelle_competence }}</td>
-            <td>{{ synergy.libelle_competence_1 }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div id="tabsynRes" style="display: none;">
-      <p class="text-center">Aucun résultat</p>
-    </div>
-
-
-    <h2>Tests de caractéristique</h2>
-
-    <p>Il arrive qu’un personnage tente d’accomplir une action ne correspondant à aucune compétence. On a alors recours à un test de caractéristique, simulé par 1d20 + modificateur de la caractéristique appropriée (cela revient en quelque sorte à jouer un test inné de compétence).</br>
-    Parfois, le résultat d’une action repose uniquement sur l’une des caractéristiques du personnage, sans que le hasard intervienne. De même que deux individus ne vont pas effectuer de test de taille pour savoir qui est le plus grand, ils ne jouent pas de test de Force pour savoir qui est le plus musclé.</p>
-    
-    <h2>Les compétences</h2>
-    
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" id="compSeach" placeholder="Rechercher une compétence ou un element du tableau" aria-label="Rechercher une compétence" aria-describedby="button-addon2" onkeyup="searchTable('tabcomp', 'compSeach')">
-    </div>
-
-    <table id='tabcomp'>
-      <caption>Tableau : Les compétences</caption>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Caractéristique associées</th>
-          <th>Formation requise</th>
-          <th>Malus d'armure</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for competence in competences %}
-          <tr onmouseover="hoverRow(this)"  onmouseout="unhoverRow(this)" class='clickable-tr row-to-search'
-          href="{{ url_for('competences.competence', nom = competence.Competence.libelle_competence) }}">
-            <td>{{ competence.Competence.libelle_competence }}</td>
-            <td>{{ competence.Caracteristique.nom }}</td>
-            <td class='text-center fs-4'>
-              {% if not competence.Competence.innee %}
-                <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
-              {% else %}
-                <i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i>
-              {% endif %}
-            </td>
-            <td class='text-center fs-4'>
-              {% if competence.Competence.malus_armure %}
-                <i class="fa fa-check-circle-o text-success" aria-hidden="true"></i>
-              {% else %}
-                <i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i>
-              {% endif %}
-            </td>
-            <td>{{ competence.Competence.description_courte }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div id="tabcompRes" style="display: none;">
-      <p class="text-center">Aucun résultat</p>
-    </div>
-
-    <h2>Techniques astucieuses (regles optionelle)</h2>
-
-    <p>Les techniques astucieuses sont une méthode de donner à un personnage des techniques souvent hautes en couleur, comme sauter par-dessus un gouffre à l'aide d'un fouet, courir sur un mur ou encore sauter à cheval tout en frappant son ennemi. Apprendre une technique astucieuse comptant des points de compétence, ce sont généralement les personnages en ayant le plus qui en apprennent le plus. Les 4 types de techniques astucieuses sont Interaction, Manipulation, Mental et Mouvement. Chacun de ses types se focalisent sur certaines compétences, et seront donc apprécier par divers types de personnage.</p>
-    <p>- En voir plus sur les <a href="{{ url_for('competences.techniques_astucieuses') }}">techniques astucieuses</a></p>
-    </div>
-  </div>
+</div>
 {% endblock %}

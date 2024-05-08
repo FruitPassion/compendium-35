@@ -1,64 +1,56 @@
 {% extends 'common/base.html' %}
-
 {% block stylesheets %}
-  <style>
+    <style>
     ul {
       list-style: inside;
     }
-  </style>
+    </style>
 {% endblock %}
-
-
 {% block title %}Dons{% endblock %}
-
 {% block body %}
-  <div class="glassbackground m-auto overflow-hidden">
-    <div class="illustration-container">
-      <img src="{{ url_for('static', filename = 'images/don/art'+range(1, 6)|random|string+'.jpg') }}" alt="Dons" class="illustration" />
+    <div class="glassbackground m-auto overflow-hidden">
+        <div class="illustration-container">
+            <img height="20"
+                 width="20"
+                 src="{{ url_for('static', filename = 'images/don/art'+range(1, 6) |random|string+'.jpg') }}"
+                 alt="Dons"
+                 class="illustration" />
+        </div>
+        <div class="text-container p-4">
+            <h1 class="mb-3 text-center">
+                {{ don.Don.nom }}
+                {% set list_cat = don[1].split(',') %}
+                [
+                {% for item in list_cat %}
+                    <a class="a-h1"
+                       href="{{ url_for('dons.categorie', nom_categorie=item) }}">{{ item }}</a>
+                    {% if not loop.last %},{% endif %}
+                {% endfor %}
+                ]
+            </h1>
+            <p>{{ don.Don.description }}</p>
+            {% if conditions|length > 0 %}
+                <h2 class="mt-4">Condition</h2>
+                <ul>
+                    {% for condition in conditions %}{{ condition|safe }}{% endfor %}
+                </ul>
+            {% endif %}
+            {% if don.Don.avantage %}
+                <h2 class="mt-4">Avantages</h2>
+                <p>{{ don.Don.avantage }}</p>
+            {% endif %}
+            {% if don.Don.special %}
+                <h2 class="mt-4">Spécial</h2>
+                <p>{{ don.Don.special }}</p>
+            {% endif %}
+            {% if don.Don.normal %}
+                <h2 class="mt-4">Normal</h2>
+                <p>{{ don.Don.normal }}</p>
+            {% endif %}
+            <h2>Source :</h2>
+            <p>
+                <a href="{{ url_for('sources.source', nom=don.Source.id_source) }}">{{ don.Source.nom }}</a>
+            </p>
+        </div>
     </div>
-
-    <div class='text-container p-4'>
-      <h1 class="mb-3 text-center">
-
-          {{ don.Don.nom }} 
-          {% set list_cat = don[1].split(',') %}
-          [{% for item in list_cat %}
-              <a class="a-h1" href="{{ url_for('dons.categorie', nom_categorie=item) }}">{{ item }}</a>
-              {% if not loop.last %}, {% endif %}
-          {% endfor %}]
-      </h1>
-
-      <p>{{ don.Don.description }}</p>
-
-      {% if conditions|length > 0 %}
-        <h2 class="mt-4">Condition</h2>
-        <ul>
-          {% for condition in conditions %}
-            {{ condition|safe }}
-          {% endfor %}
-        </ul>
-      {% endif %}
-
-      {% if don.Don.avantage %}
-        <h2 class="mt-4">Avantages</h2>
-         <p>{{ don.Don.avantage }}</li>
-      {% endif %}
-
-      {% if don.Don.special %}
-        <h2 class="mt-4">Spécial</h2>
-        <p>{{ don.Don.special }}</li>
-      {% endif %}
-
-      {% if don.Don.normal %}
-        <h2 class="mt-4">Normal</h2>
-        <p>{{ don.Don.normal }}</li>
-      {% endif %}
-
-      <h2>Source :</h2>
-      <p><a href="{{ url_for('sources.source', nom=don.Source.id_source) }}">
-          {{ don.Source.nom }}
-      </a></p>
-
-    </div>
-  </div>
 {% endblock %}

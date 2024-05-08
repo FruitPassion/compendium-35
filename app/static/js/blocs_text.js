@@ -1,4 +1,4 @@
-function searchBlocs(){
+function searchBlocs() {
     let input = document.getElementById('searchBar').value.toLowerCase();
     let blocs = document.getElementsByClassName('blocs');
     let nbr = 0;
@@ -10,7 +10,7 @@ function searchBlocs(){
         }
         element.style.display = display;
     }
-    
+
     let searchRes = document.getElementById('searchRes');
     if (nbr == 0) {
         searchRes.style.display = "";

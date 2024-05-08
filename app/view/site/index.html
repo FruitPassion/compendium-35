@@ -1,139 +1,196 @@
 {% extends 'common/base.html' %}
-
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/accueil.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/accueil.css') }}">
 {% endblock %}
-
-
 {% block body %}
-
-<div class="glassbackground m-auto p-4">
-    <h1 class="mb-5 text-center">Accueil</h1>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/classes.jpg') }}" class="card-img-top" alt="classes">
-                <div class="card-body">
-                    <h5 class="card-title">Classes</h5>
-                    <p class="card-text">Découvrez une gamme de chemins et de spécialisations permettant de façonner les compétences et les pouvoirs de votre personnage.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/races.jpg') }}" class="card-img-top" alt="races">
-                <div class="card-body">
-                    <h5 class="card-title">Races</h5>
-                    <p class="card-text">Explorez une diversité de races fantastiques avec des traits uniques et des histoires captivantes.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <a href="{{ url_for('dons.index') }}">
-                    <img src="{{ url_for('static',filename='images/cards/dons.jpg') }}" class="card-img-top" alt="dons">
+    <div class="glassbackground m-auto p-4">
+        <h1 class="mb-5 text-center">Accueil</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/classes.jpg') }}"
+                         class="card-img-top"
+                         alt="classes">
                     <div class="card-body">
-                        <h5 class="card-title">Dons</h5>
-                        <p class="card-text">Maîtrisez des compétences spéciales et des talents uniques pour personnaliser les capacités de votre personnage.</p>
+                        <h5 class="card-title">Classes</h5>
+                        <p class="card-text">
+                            Découvrez une gamme de chemins et de spécialisations permettant de façonner les compétences et les pouvoirs de votre personnage.
+                        </p>
                     </div>
-                </a>
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <a href="{{ url_for('competences.index') }}">
-                    <img src="{{ url_for('static',filename='images/cards/compétences.jpg') }}" class="card-img-top" alt="competences">
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/races.jpg') }}"
+                         class="card-img-top"
+                         alt="races">
                     <div class="card-body">
-                        <h5 class="card-title">Compétences</h5>
-                        <p class="card-text">Acquérez une expertise dans une variété de domaines, des compétences pratiques aux connaissances ésotériques.</p>
+                        <h5 class="card-title">Races</h5>
+                        <p class="card-text">
+                            Explorez une diversité de races fantastiques avec des traits uniques et des histoires captivantes.
+                        </p>
                     </div>
-                </a>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <a href="{{ url_for('sorts.index') }}">
-                <img src="{{ url_for('static',filename='images/cards/magic.jpg') }}" class="card-img-top" alt="magie">
-                <div class="card-body">
-                    <h5 class="card-title">Magie</h5>
-                    <p class="card-text"> Explorez les mystères et les pouvoirs des arcanes, des sorts élémentaires aux enchantements complexes.</p>
-                </div>
-            </a>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/psionnic.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Psionnique</h5>
-                    <p class="card-text">Plongez dans les profondeurs de l'esprit et découvrez les pouvoirs psioniques pour manipuler la réalité par la pensée.</p>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/martial.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Martial</h5>
-                    <p class="card-text">
-                        Renforcez votre corps et votre esrpit afin de sublimer votre maitrise des armes et des techniques de combat.
-                    </p>
+            <div class="col">
+                <div class="card">
+                    <a href="{{ url_for("dons.index") }}">
+                        <img height="20"
+                             width="20"
+                             src="{{ url_for('static',filename='images/cards/dons.jpg') }}"
+                             class="card-img-top"
+                             alt="dons">
+                        <div class="card-body">
+                            <h5 class="card-title">Dons</h5>
+                            <p class="card-text">
+                                Maîtrisez des compétences spéciales et des talents uniques pour personnaliser les capacités de votre personnage.
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/mystere.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Mystère</h5>
-                    <p class="card-text">
-                        Suivez l'ordre de la magie de l'ombre et suivez une voie mystique pour obtenir des pouvoirs surnaturels.
-                    </p>
+            <div class="col">
+                <div class="card">
+                    <a href="{{ url_for("competences.index") }}">
+                        <img height="20"
+                             width="20"
+                             src="{{ url_for('static',filename='images/cards/compétences.jpg') }}"
+                             class="card-img-top"
+                             alt="competences">
+                        <div class="card-body">
+                            <h5 class="card-title">Compétences</h5>
+                            <p class="card-text">
+                                Acquérez une expertise dans une variété de domaines, des compétences pratiques aux connaissances ésotériques.
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/incarnum.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Incarnum</h5>
-                    <p class="card-text">
-                        Manipulez votre énergie vitale pour crée votre propre arsenal et créations magiques personelles qui ne dépendent que de vos envies.
-                    </p>
+            <div class="col">
+                <div class="card">
+                    <a href="{{ url_for("sorts.index") }}">
+                        <img height="20"
+                             width="20"
+                             src="{{ url_for('static',filename='images/cards/magic.jpg') }}"
+                             class="card-img-top"
+                             alt="magie">
+                        <div class="card-body">
+                            <h5 class="card-title">Magie</h5>
+                            <p class="card-text">
+                                Explorez les mystères et les pouvoirs des arcanes, des sorts élémentaires aux enchantements complexes.
+                            </p>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/armes.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Armes</h5>
-                    <p class="card-text">Découvrez une gamme d'armes offensives, des armes de mêlée aux armes à distance, pour répondre à tous les styles de combat.</p>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/psionnic.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Psionnique</h5>
+                        <p class="card-text">
+                            Plongez dans les profondeurs de l'esprit et découvrez les pouvoirs psioniques pour manipuler la réalité par la pensée.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/armures.jpg') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Armures</h5>
-                    <p class="card-text">Protégez-vous des dangers du monde avec une variété d'armures et de protections.</p>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/martial.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Martial</h5>
+                        <p class="card-text">
+                            Renforcez votre corps et votre esrpit afin de sublimer votre maitrise des armes et des techniques de combat.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{{ url_for('static',filename='images/cards/equipements.png') }}" class="card-img-top" alt="psionnique">
-                <div class="card-body">
-                    <h5 class="card-title">Matériel</h5>
-                    <p class="card-text">Explorez une sélection d'objets et d'équipements essentiels pour l'aventure, des outils de survie aux objets magiques.</p>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/mystere.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Mystère</h5>
+                        <p class="card-text">
+                            Suivez l'ordre de la magie de l'ombre et suivez une voie mystique pour obtenir des pouvoirs surnaturels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/incarnum.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Incarnum</h5>
+                        <p class="card-text">
+                            Manipulez votre énergie vitale pour crée votre propre arsenal et créations magiques personelles qui ne dépendent que de vos envies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/armes.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Armes</h5>
+                        <p class="card-text">
+                            Découvrez une gamme d'armes offensives, des armes de mêlée aux armes à distance, pour répondre à tous les styles de combat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/armures.jpg') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Armures</h5>
+                        <p class="card-text">Protégez-vous des dangers du monde avec une variété d'armures et de protections.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img height="20"
+                         width="20"
+                         src="{{ url_for('static',filename='images/cards/equipements.png') }}"
+                         class="card-img-top"
+                         alt="psionnique">
+                    <div class="card-body">
+                        <h5 class="card-title">Matériel</h5>
+                        <p class="card-text">
+                            Explorez une sélection d'objets et d'équipements essentiels pour l'aventure, des outils de survie aux objets magiques.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-
 {% endblock %}

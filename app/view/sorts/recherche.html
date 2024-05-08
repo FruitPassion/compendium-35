@@ -1,67 +1,73 @@
 {% extends 'common/base.html' %}
-
 {% block stylesheets %}
-  <style>
+    <style>
     ul {
       list-style: inside;
     }
-  </style>
+    </style>
 {% endblock %}
 {% block title %}Recherche sort{% endblock %}
-
 {% block body %}
-  <div class="glassbackground m-auto overflow-hidden">
-    <div class="illustration-container">
-      <img src="{{ url_for('static', filename = 'images/cards/magic.jpg') }}" alt="Magie" class="illustration" />
-    </div>
-
-    <div class='text-container p-4'>
-      <h1 class="mb-3 text-center">Recherche sort</h1>
-      <p>
-      Voici la liste des différentes manières de rechercher un sort :
-      </p>
-
-      <h4>Recherche par nom :</h4>
-      <form method="POST" action="{{ url_for('sorts.resultat_recherche') }}">
-        <div class="input-group mb-3">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-          <input type="text" class="form-control" name="sort-nom" placeholder="Nom du sort" aria-label="Nom du sort" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
+    <div class="glassbackground m-auto overflow-hidden">
+        <div class="illustration-container">
+            <img height="20"
+                 width="20"
+                 src="{{ url_for('static', filename = 'images/cards/magic.jpg') }}"
+                 alt="Magie"
+                 class="illustration" />
         </div>
-      </form>
-
-      <h4>Liste complète :</h4>
-      <ul>
-        <li><a href="{{ url_for('sorts.liste') }}">Tout les sorts</a></li>
-      </ul>
-
-      <h4>Liste par école et branche :</h4>
-      <ul>
-        {% for registre in c_sorts.get_recherche_sorts_par_ecole() %}
-          {% if registre[1] is none %}
-            <li><a href="{{ url_for('sorts.ecole', ecole=registre[0]) }}">{{ registre[0] }}</a></li>
-          {% else %}
-            <li style="list-style: none; padding-left: 50px;">
-              <a href="{{ url_for('sorts.branche', ecole=registre[0], branche=registre[1]) }}">{{ registre[0] }} - {{ registre[1] }}</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-
-      <h4>Liste par registre :</h4>
-      <ul>
-        {% for registre in c_sorts.get_recherche_sorts_par_registre() %}
-          <li><a href="{{ url_for('sorts.registre', registre=registre[0], page=1) }}">{{ registre[0]|lower }}</a></li>
-        {% endfor %}
-      </ul>
-
-      <h4>Liste par source :</h4>
-      <ul>
-        {% for source in c_sorts.get_recherche_sorts_par_source() %}
-          <li><a href="{{ url_for('sorts.source', source=source.nom, page=1) }}">{{ source.nom }}</a></li>
-        {% endfor %}
-      </ul>
-
+        <div class="text-container p-4">
+            <h1 class="mb-3 text-center">Recherche sort</h1>
+            <p>Voici la liste des différentes manières de rechercher un sort :</p>
+            <h4>Recherche par nom :</h4>
+            <form method="post" action="{{ url_for("sorts.resultat_recherche") }}">
+                <div class="input-group mb-3">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <input type="text"
+                           class="form-control"
+                           name="sort-nom"
+                           placeholder="Nom du sort"
+                           aria-label="Nom du sort"
+                           aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
+                </div>
+            </form>
+            <h4>Liste complète :</h4>
+            <ul>
+                <li>
+                    <a href="{{ url_for("sorts.liste") }}">Tout les sorts</a>
+                </li>
+            </ul>
+            <h4>Liste par école et branche :</h4>
+            <ul>
+                {% for registre in c_sorts.get_recherche_sorts_par_ecole() %}
+                    {% if registre[1] is none %}
+                        <li>
+                            <a href="{{ url_for('sorts.ecole', ecole=registre[0]) }}">{{ registre[0] }}</a>
+                        </li>
+                    {% else %}
+                        <li class="custom-list">
+                            <a href="{{ url_for('sorts.branche', ecole=registre[0], branche=registre[1]) }}">{{ registre[0] }} - {{ registre[1] }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <h4>Liste par registre :</h4>
+            <ul>
+                {% for registre in c_sorts.get_recherche_sorts_par_registre() %}
+                    <li>
+                        <a href="{{ url_for('sorts.registre', registre=registre[0], page=1) }}">{{ registre[0]|lower }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4>Liste par source :</h4>
+            <ul>
+                {% for source in c_sorts.get_recherche_sorts_par_source() %}
+                    <li>
+                        <a href="{{ url_for('sorts.source', source=source.nom, page=1) }}">{{ source.nom }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-  </div>
 {% endblock %}

@@ -1,63 +1,106 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="{{ url_for('static',filename='images/skull-icone.png') }}" alt="" width="30" height="30"
-                class="d-inline-block align-text-top">
-            Compendium 3.5 
+            <img src="{{ url_for('static',filename='images/skull-icone.png') }}"
+                 alt=""
+                 width="30"
+                 height="30"
+                 class="d-inline-block align-text-top">
+            Compendium 3.5
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
-            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-            aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas offcanvas-end text-bg-dark"
+             tabindex="-1"
+             id="offcanvasDarkNavbar"
+             aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
-                    <img src="{{ url_for('static',filename='images/skull-icone.png') }}" alt="" width="30" height="30"
-                class="d-inline-block align-text-top">
-                Compendium 3.5</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                    <img src="{{ url_for('static',filename='images/skull-icone.png') }}"
+                         alt=""
+                         width="30"
+                         height="30"
+                         class="d-inline-block align-text-top">
+                    Compendium 3.5
+                </h5>
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    {% if not session["nom_compte"] %} 
-                        {% include "partials/nav_deconnecte.html" %} 
-                    {% else %} 
+                    {% if not session["nom_compte"] %}
+                        {% include "partials/nav_deconnecte.html" %}
+                    {% else %}
                         {% include "partials/nav_connexion.html" %}
-                    {% endif %} 
+                    {% endif %}
                     <div class="w-100 dropdown">
-                        <a class="w-100 btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Catégories
-                        </a>
+                        <a class="w-100 btn btn-outline-light dropdown-toggle"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">Catégories</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Classes</a></li>
-                            <li><a class="dropdown-item" href="#">Races</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Classes</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Races</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{ url_for('dons.index') }}">Dons</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('competences.index') }}">Compétences</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for("dons.index") }}">Dons</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for("competences.index") }}">Compétences</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{ url_for('sorts.index') }}">Magie</a></li>
-                            <li><a class="dropdown-item" href="#">Psionnique</a></li>
-                            <li><a class="dropdown-item" href="#">Martial</a></li>
-                            <li><a class="dropdown-item" href="#">Mystère</a></li>
-                            <li><a class="dropdown-item" href="#">Incarnum</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ url_for("sorts.index") }}">Magie</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Psionnique</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Martial</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Mystère</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Incarnum</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Armes</a></li>
-                            <li><a class="dropdown-item" href="#">Armures</a></li>
-                            <li><a class="dropdown-item" href="#">Matériel</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Armes</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Armures</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Matériel</a>
+                            </li>
                         </ul>
                     </div>
                 </ul>
                 <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Armures, Dons, Sorts ..." aria-label="Armures, Dons, Sorts ...">
+                    <input class="form-control me-2"
+                           type="search"
+                           placeholder="Armures, Dons, Sorts ..."
+                           aria-label="Armures, Dons, Sorts ...">
                     <button class="btn btn-outline-danger" type="submit">Chercher</button>
                 </form>
             </div>
