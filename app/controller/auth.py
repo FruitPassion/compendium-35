@@ -7,7 +7,7 @@ from utils.custom_form import LoginForm, RegisterForm
 auth = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-@auth.route("/connexion", methods=["GET", "POST"])
+@auth.route("/connexion/", methods=["GET", "POST"])
 def connexion():
     form = LoginForm()
     erreurs = []
@@ -30,7 +30,7 @@ def connexion():
     return render_template("auth/connexion.html", form=form, erreurs=erreurs)
 
 
-@auth.route("/inscription", methods=["GET", "POST"])
+@auth.route("/inscription/", methods=["GET", "POST"])
 def inscription():
     form = RegisterForm()
     erreurs = []
@@ -49,7 +49,7 @@ def inscription():
     return render_template("auth/inscription.html", form=form, erreurs=erreurs)
 
 
-@auth.route("/deconnexion", methods=["GET"])
+@auth.route("/deconnexion/", methods=["GET"])
 def deconnexion():
     session.pop("nom_compte", None)
     flash("Vous êtes déconnecté")

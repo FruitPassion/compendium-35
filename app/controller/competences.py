@@ -21,7 +21,7 @@ def index():
     )
 
 
-@competences.route("/recherche/<string:nom>", methods=["GET"])
+@competences.route("/recherche/<string:nom>/", methods=["GET"])
 def competence(nom):
     competence = Competence.get_by_nom(nom)
     if not competence:
@@ -40,7 +40,7 @@ def competence(nom):
     )
 
 
-@competences.route("/techniques-astucieuses", methods=["GET"])
+@competences.route("/techniques-astucieuses/", methods=["GET"])
 def techniques_astucieuses():
     techniques = TechniqueAstucieuse.get_all()
     condtions = Condition.get_conditions_technique_astucieuse_all()

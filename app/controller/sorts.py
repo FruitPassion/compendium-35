@@ -16,7 +16,7 @@ def recherche():
     return render_template("sorts/recherche.html", c_sorts=Sort)
 
 
-@sorts.route("/recherche/<string:sort_nom>", methods=["GET"])
+@sorts.route("/recherche/<string:sort_nom>/", methods=["GET"])
 def sort(sort_nom):
     sort = Sort.get_sort(sort_nom)
     if not sort:
@@ -34,7 +34,7 @@ def resultat_recherche():
 
 
 @sorts.route("/liste/", defaults={"page": 1}, methods=["GET"])
-@sorts.route("/liste/<int:page>", methods=["GET"])
+@sorts.route("/liste/<int:page>/", methods=["GET"])
 def liste(page):
     nbr_sorts = Sort.get_number_of_sorts()
 
@@ -83,7 +83,7 @@ def registre(registre, page):
 
 
 @sorts.route("/source/<string:source>/", defaults={"page": 1}, methods=["GET"])
-@sorts.route("/source/<string:source>/<int:page>", methods=["GET"])
+@sorts.route("/source/<string:source>/<int:page>/", methods=["GET"])
 def source(source, page):
     nbr_sorts = Sort.get_number_of_sorts_par_source(source)
 
@@ -110,7 +110,7 @@ def source(source, page):
 
 
 @sorts.route("/ecole/<string:ecole>/", defaults={"page": 1}, methods=["GET"])
-@sorts.route("/ecole/<string:ecole>/<int:page>", methods=["GET"])
+@sorts.route("/ecole/<string:ecole>/<int:page>/", methods=["GET"])
 def ecole(ecole, page):
     nbr_sorts = Sort.get_number_of_sorts_par_ecole(ecole)
 
@@ -139,7 +139,7 @@ def ecole(ecole, page):
 @sorts.route(
     "/branche/<string:ecole>/<string:branche>/", defaults={"page": 1}, methods=["GET"]
 )
-@sorts.route("/branche/<string:ecole>/<string:branche>/<int:page>", methods=["GET"])
+@sorts.route("/branche/<string:ecole>/<string:branche>/<int:page>/", methods=["GET"])
 def branche(ecole, branche, page):
     nbr_sorts = Sort.get_number_of_sorts_par_ecole_branche(ecole, branche)
 
