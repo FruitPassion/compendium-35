@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, render_template
 from model.competence import Competence
 from model.condition import Condition
+from model.shared_model import TextPage
 from model.synergiecomp import SynergieCompetence
 from model.techniques_astucieuses import TechniqueAstucieuse
 
@@ -9,10 +10,14 @@ competences = Blueprint("competences", __name__, url_prefix="/competences")
 
 @competences.route("/", methods=["GET"])
 def index():
+    index_text = TextPage.query.filter_by(title="index_competences").first().content
     competences = Competence.get_all()
     synergie = SynergieCompetence.get_all()
     return render_template(
-        "competences/index.html", competences=competences, synergie=synergie
+        "competences/index.html",
+        competences=competences,
+        synergie=synergie,
+        index_text=index_text,
     )
 
 

@@ -9,6 +9,15 @@ config = read_config("config.txt")
 DB_SCHEMA = "main"
 
 
+class TextPage(db.Model):
+    __tabelname__ = "text_page"
+    __table_args__ = {"schema": DB_SCHEMA}
+
+    id_text_page = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+
+
 class Alteration(db.Model):
     __tablename__ = "alteration"
     __table_args__ = {"schema": DB_SCHEMA}

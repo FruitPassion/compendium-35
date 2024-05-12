@@ -1,4 +1,5 @@
 from flask import Blueprint, abort, redirect, render_template, request, url_for
+from model.shared_model import TextPage
 from model.sort import Sort
 
 sorts = Blueprint("sorts", __name__, url_prefix="/sorts")
@@ -6,7 +7,8 @@ sorts = Blueprint("sorts", __name__, url_prefix="/sorts")
 
 @sorts.route("/", methods=["GET"])
 def index():
-    return render_template("sorts/index.html")
+    index_text = TextPage.query.filter_by(title="index_sorts").first().content
+    return render_template("sorts/index.html", index_text=index_text)
 
 
 @sorts.route("/recherche/", methods=["GET"])
