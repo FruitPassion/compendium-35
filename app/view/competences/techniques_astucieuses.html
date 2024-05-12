@@ -59,13 +59,17 @@
                             <ul>
                                 {% for condition in condtions %}
                                     {% if technique.TechniqueAstucieuse.id_technique_astucieuse == condition.Dependre.id_technique_astucieuse %}
-                                        <li>Degré de maîtrise de {{ condition.Dependre.valeur }} en {{ condition.Competence.libelle_competence }}</li>
+                                        <li>Degré de maîtrise de {{ condition.Dependre.valeur }} en 
+                                            <a href="{{ url_for('competences.competence', nom=condition.Competence.libelle_competence) }}">
+                                                {{ condition.Competence.libelle_competence }}
+                                            </a>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>
                         </div>
                         <h5>Avantage :</h5>
-                        <p>{{ technique.TechniqueAstucieuse.avantage }}</p>
+                        <p>{{ technique.TechniqueAstucieuse.avantage|safe }}</p>
                         <h5>Source :</h5>
                         <p>
                             <a href="{{ url_for('sources.source', nom=technique.Source.id_source) }}">{{ technique.Source.nom }}</a>
