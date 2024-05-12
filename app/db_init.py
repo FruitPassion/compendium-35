@@ -23,7 +23,9 @@ with app.app_context():
         with open(sql, "r") as file:
             sql_data = file.read().replace("\n", "")
             sql_data = sql_data.split("INSERT INTO ")
-            sql_data = [sql_data[0]] + ["INSERT INTO " + query for query in sql_data[1:]]
+            sql_data = [sql_data[0]] + [
+                "INSERT INTO " + query for query in sql_data[1:]
+            ]
 
         with db.engine.connect() as conn:
             for data in sql_data:

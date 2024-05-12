@@ -59,7 +59,8 @@
                             <ul>
                                 {% for condition in condtions %}
                                     {% if technique.TechniqueAstucieuse.id_technique_astucieuse == condition.Dependre.id_technique_astucieuse %}
-                                        <li>Degré de maîtrise de {{ condition.Dependre.valeur }} en 
+                                        <li>
+                                            Degré de maîtrise de {{ condition.Dependre.valeur }} en
                                             <a href="{{ url_for('competences.competence', nom=condition.Competence.libelle_competence) }}">
                                                 {{ condition.Competence.libelle_competence }}
                                             </a>
