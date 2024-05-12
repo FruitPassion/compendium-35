@@ -13,7 +13,6 @@ with app.app_context():
     from model.shared_model import db
 
     db.create_all()
-    # get all file in sql folder
     sql_list = []
     for root, dirs, files in os.walk("./sql"):
         for file in files:
@@ -23,7 +22,8 @@ with app.app_context():
     for sql in sql_list:
         with open(sql, "r") as file:
             sql_data = file.read().replace("\n", "")
-            sql_data = sql_data.split("##")
+            sql_data = sql_data.split("INSERT INTO ")
+            sql_data = [sql_data[0]] + ["INSERT INTO " + query for query in sql_data[1:]]
 
         with db.engine.connect() as conn:
             for data in sql_data:
