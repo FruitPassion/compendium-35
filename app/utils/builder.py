@@ -1,3 +1,4 @@
+from flask import url_for
 from model.condition import Condition
 
 
@@ -56,10 +57,13 @@ def builder_condition_don(id_don):
             )
 
         if condition[11] is not None:
+            url = url_for(
+                "competences.competence", nom=condition[11].libelle_competence
+            )
             liste_conditions.append(
-                "<li>Degré de maîtrise de {} en <a href='/competences/{}'>{}</a></li>".format(
+                "<li>Degré de maîtrise de {} en <a href='{}'>{}</a></li>".format(
                     condition[10].degre_maitrise,
-                    condition[11].libelle_competence,
+                    url,
                     condition[11].libelle_competence,
                 )
             )
