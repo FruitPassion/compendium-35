@@ -9,13 +9,9 @@
 {% block title %}Recherche sort{% endblock %}
 {% block body %}
     <div class="glassbackground m-auto overflow-hidden">
-        <div class="illustration-container">
-            <img height="20"
-                 width="20"
-                 src="{{ url_for('static', filename = 'images/cards/magic.jpg') }}"
-                 alt="Magie"
-                 class="illustration" />
-        </div>
+        {% with filename='images/cards/magic.jpg' %}
+            {% include "partials/image_banner.html" %}
+        {% endwith %}
         <div class="text-container p-4">
             <h1 class="mb-3 text-center">Recherche sort</h1>
             <p>Voici la liste des différentes manières de rechercher un sort :</p>
